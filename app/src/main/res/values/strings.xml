@@ -5,7 +5,16 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_add">Add new</string>
     <string name="navigation_drawer_edit">Edit Existing</string>
+    <string name="button_complete">Complete</string>
+    <string name="button_confirm">Confirm</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_sort">Sort</string>
+
+    <string name="add_category_title">Add Category</string>
+    <string name="add_category_name">Name of Category</string>
+    <string name="add_category_default">Category Name</string>
+    <string name="add_category_color">Color of Category</string>
+    <string name="add_category_color_default">#FFFFFF</string>
+    <string name="title_activity_add_category">AddCategoryActivity</string>
 </resources>
