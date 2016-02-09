@@ -1,6 +1,7 @@
 package me.leafbit.todue;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,9 +48,11 @@ public class AddCategoryActivity extends AppCompatActivity {
         }
 
         Category c = new Category(nameText.toString(), hexColor);
+        Context ctx = getApplicationContext();
+        boolean success = c.saveCategory(c, ctx);
+        System.out.println("DEBUG: Save succeeded? -> " + success);
 
-        c.saveCategory(c);
-
+        finish();
 
     }
 

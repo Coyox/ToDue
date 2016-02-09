@@ -103,6 +103,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_cat) {
             //TODO: Handle editing existing category
             System.out.println("DEBUG: Clicked edit category");
+            Intent editCatIntent;
+            //startActivity(editCatIntent);
         }
 
 
