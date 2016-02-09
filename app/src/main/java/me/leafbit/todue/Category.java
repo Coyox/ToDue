@@ -5,21 +5,21 @@ package me.leafbit.todue;
  */
 public class Category {
 
-    String name;            // Name of category
+    String id;            // Name of category
     String hexColor;        // #RRGGBB color code;
 
-    public Category(String name, String hexColor){
-        this.name = name;
+    public Category(String id, String hexColor){
+        this.id = id;
         this.hexColor = hexColor;
     }
 
     // Reads saved categories from storage and returns all
-    public Category[] loadAllCategory(){
+    public Category[] loadAllCategories(){
         //TODO:
         return new Category[0];
     }
 
-    // Saves a category to storage
+    // Saves a category to storage by appending it to the end of the file
     public void saveCategory(Category c){
         //TODO:
     }

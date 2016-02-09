@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -25,8 +25,10 @@ public class MainActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
+            //TODO: Handle FAB click
             @Override
             public void onClick(View view) {
+                System.out.println("DEBUG: FAB Clicked");
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
@@ -68,6 +70,12 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            //TODO: Handle settings
+            System.out.println("DEBUG: Settings clicked");
+            return true;
+        } else if (id == R.id.action_sort){
+            //TODO: Handle sort
+            System.out.println("DEBUG: Sort clicked");
             return true;
         }
 
@@ -82,8 +90,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_add_cat){
             //TODO: Handle adding new category
+            System.out.println("DEBUG: Clicked add category");
         } else if (id == R.id.nav_edit_cat) {
             //TODO: Handle editing existing category
+            System.out.println("DEBUG: Clicked edit category");
         }
 
 
