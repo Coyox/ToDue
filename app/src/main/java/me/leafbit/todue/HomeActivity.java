@@ -1,5 +1,6 @@
 package me.leafbit.todue;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+
+import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,6 +86,37 @@ public class HomeActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    // Color selection dialog
+    public void selectColor() {
+
+        final ColorPicker cp = new ColorPicker(HomeActivity.this);
+
+        cp.show();
+
+        Button okColor = (Button)cp.findViewById(R.id.okColorButton);
+
+        okColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+        /* You can get single channel (value 0-255) */
+                int selectedColorR = cp.getRed();
+                int selectedColorG = cp.getGreen();
+                int selectedColorB = cp.getBlue();
+
+                String hexColor = "#" + Integer.toHexString(selectedColorR) +
+                        Integer.toHexString(selectedColorG) + Integer.toHexString(selectedColorB);
+
+        /* Or the android RGB Color (see the android Color class reference) */
+                //int selectedColorRGB = cp.getColor();
+
+
+                cp.dismiss();
+            }
+        });
+
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -91,6 +126,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_add_cat){
             //TODO: Handle adding new category
             System.out.println("DEBUG: Clicked add category");
+
         } else if (id == R.id.nav_edit_cat) {
             //TODO: Handle editing existing category
             System.out.println("DEBUG: Clicked edit category");

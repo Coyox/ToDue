@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add Category"
+        android:id="@+id/addCategoryHeader"
+        android:layout_weight="0.05"
+        android:paddingTop="20sp"
+        android:paddingBottom="20sp"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of Category"
+        android:id="@+id/addCatNameDesc"
+        android:paddingBottom="@dimen/design_tab_text_size"
+        android:paddingLeft="8sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addCategoryName"
+        android:layout_weight="0.05"
+        android:text="Category Name"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:padding="4sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color of Category"
+        android:id="@+id/addCategoryColor"
+        android:paddingBottom="@dimen/design_tab_text_size"
+        android:paddingTop="@dimen/design_tab_text_size"
+        android:paddingLeft="8sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addCatHexColor"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.05"
+        android:text="#FFFFFF"
+        android:textAlignment="center"
+        android:padding="4sp" />
+
+    <Button
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:text="Complete"
+        android:id="@+id/addCatComplete"
+        android:layout_gravity="bottom|right"
+        android:layout_weight="0.08" />
+
+</LinearLayout>

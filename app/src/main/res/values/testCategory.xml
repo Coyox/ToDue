@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <category name="test_category_0">
-        <id>Test 0</id>
-        <color>#FFFFFF</color>
-    </category>
-    <category name="test_category_1">
-        <id>Test 1</id>
-        <color>#000000</color>
-    </category>
+
 </resources>
