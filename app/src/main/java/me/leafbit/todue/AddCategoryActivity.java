@@ -43,19 +43,16 @@ public class AddCategoryActivity extends AppCompatActivity {
         EditText hexText = (EditText) findViewById(R.id.addCatHexColor);
         hexColor = hexText.getText().toString();
 
-        if(!validateHex(hexColor)){
-            //TODO: Display a dialog window informing of misformatted color
-        }
-
         Category c = new Category(nameText.toString(), hexColor);
         Context ctx = getApplicationContext();
-        boolean success = c.saveCategory(c, ctx);
-        System.out.println("DEBUG: Save succeeded? -> " + success);
+        long success = c.saveCategory(c, ctx);
+        System.out.println("DEBUG: new row id = " + success);
 
         finish();
 
     }
 
+    // DEPRECATED
     // Takes a string input and returns true if the string is in Hex Color format
     private boolean validateHex(String color){
         // SOURCE:

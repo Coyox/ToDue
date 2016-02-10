@@ -36,6 +36,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="me.leafbit.todue.HomeActivity" />
         </activity>
+        <activity android:name=".EditCategoryActivity"></activity>
     </application>
 
 </manifest>

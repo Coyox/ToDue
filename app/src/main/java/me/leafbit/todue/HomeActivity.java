@@ -96,7 +96,6 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.nav_add_cat){
             //TODO: Handle adding new category
-            System.out.println("DEBUG: Clicked add category");
             Intent addCatIntent = new Intent(this, AddCategoryActivity.class);
             startActivity(addCatIntent);
 
