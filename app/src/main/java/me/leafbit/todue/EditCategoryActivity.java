@@ -16,7 +16,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
     public void deleteAll(View view){
         Context ctx = this;
-
+        System.out.println("DEBUG: Dropping category table...");
         ToDueDbHelper dbHelper = new ToDueDbHelper(ctx);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(ToDueContract.SQL_DELETE_ALL_CATEGORY);

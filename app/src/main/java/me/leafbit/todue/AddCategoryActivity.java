@@ -39,7 +39,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         EditText hexText = (EditText) findViewById(R.id.addCatHexColor);
         hexColor = hexText.getText().toString();
 
-        Category c = new Category(nameText.toString(), hexColor);
+        Category c = new Category(nameText.getText().toString(), hexColor);
         Context ctx = getApplicationContext();
         long success = c.saveCategory(c, ctx);
         System.out.println("DEBUG: new row id = " + success);
