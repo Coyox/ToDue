@@ -1,9 +1,13 @@
 package me.leafbit.todue;
 
+import android.app.ListActivity;
+import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.util.Xml;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
@@ -90,6 +94,26 @@ public class Category {
 
         return newRowId;
     }
+
+    public class ListViewLoader extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+
+
+        @Override
+        public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+            return null;
+        }
+
+        @Override
+        public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+        }
+
+        @Override
+        public void onLoaderReset(Loader<Cursor> loader) {
+
+        }
+    }
+
 
 
 

@@ -48,18 +48,6 @@ public class AddCategoryActivity extends AppCompatActivity {
 
     }
 
-    // DEPRECATED
-    // Takes a string input and returns true if the string is in Hex Color format
-    private boolean validateHex(String color){
-        // SOURCE:
-        // http://www.mkyong.com/regular-expressions/how-to-validate-hex-color-code-with-regular-expression/
-        Pattern pattern = Pattern.compile(HEX_PATTERN);
-        Matcher matcher = pattern.matcher(color);
-
-        return matcher.matches();
-
-    }
-
     // Color selection dialog
     public void selectColor(View view) {
 

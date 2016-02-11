@@ -20,6 +20,7 @@ public class AddEventActivity extends AppCompatActivity {
         //load all categories and display them in the list
         ArrayList<Category> categories = Category.loadAllCategories(this);
         ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
+        //TODO: Populate list with available categories
     }
 
     public void setDate(View view){
