@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,8 +26,16 @@ public class AddEventActivity extends AppCompatActivity {
         //load all categories and display them in the list
         ArrayList<Category> categories = Category.loadAllCategories(this);
         System.out.println("LOADED: " + categories.size() + " categories from database");
-        ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
+        for(Category c : categories){
+            System.out.println("CATEGORY NAME: " + c.id);
+        }
         //TODO: Populate list with available categories
+        //ArrayAdapter<Category> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, categories);
+        ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
+        //categoryView.setAdapter(arrayAdapter);
+        ListAdapter customAdapter = new ListAdapter(this, R.layout.activity_listview, categories);
+        categoryView.setAdapter(customAdapter);
+
     }
 
     // Called when confirm button is clicked to save the event

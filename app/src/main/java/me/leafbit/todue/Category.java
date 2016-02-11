@@ -37,9 +37,32 @@ public class Category {
     }
 
 
+    public static Cursor loadAllCategoriesAsCursor(Context ctx){
+        // Instantiate Database
+        ToDueDbHelper dbHelper = new ToDueDbHelper(ctx);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        //
+        String[] projection = {
+                ToDueContract.CategoryEntry.COLUMN_NAME_NAME,
+                ToDueContract.CategoryEntry.COLUMN_NAME_COLOR
+        };
+
+        String sortOrder = ToDueContract.CategoryEntry.COLUMN_NAME_NAME;
+        // Return all entries in new cursor object
+        Cursor c = db.query(ToDueContract.CategoryEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder);
+
+        return c;
+    }
+
     // Reads saved categories from database and returns all
     public static ArrayList<Category> loadAllCategories(Context ctx){
-        //TODO:
         ArrayList<Category> categories = new ArrayList<Category>();
         // Instantiate Database
         ToDueDbHelper dbHelper = new ToDueDbHelper(ctx);
