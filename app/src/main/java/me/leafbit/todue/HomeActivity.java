@@ -1,5 +1,6 @@
 package me.leafbit.todue;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        final Context context = this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,8 +36,9 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 System.out.println("DEBUG: FAB Clicked");
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent addEventIntent;
+                addEventIntent = new Intent(context, AddEventActivity.class);
+                startActivity(addEventIntent);
             }
         });
 
@@ -102,8 +105,9 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_edit_cat) {
             //TODO: Handle editing existing category
             System.out.println("DEBUG: Clicked edit category");
-            Intent editCatIntent;
-            //startActivity(editCatIntent);
+            Intent editCatIntent = new Intent(this, EditCategoryActivity.class);
+            startActivity(editCatIntent);
+
         }
 
 
