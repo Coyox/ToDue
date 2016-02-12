@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
@@ -56,9 +59,8 @@ public class AddEventActivity extends AppCompatActivity {
         // Find all fields
         boolean clearance = true; // Set to false if form incomplete or misformatted
         EditText nameText = (EditText) findViewById(R.id.addEventNameText);
-        CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
+        DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
         TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
-        //ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
 
         // Build event object
         String name = nameText.getText().toString(); // name
@@ -73,20 +75,23 @@ public class AddEventActivity extends AppCompatActivity {
             clearance = false;
         }
 
-        // Not sure if this works; needs testing and type research
-        Date dueDate = new Date(calendarView.getDate());
+        // Get current date and time then format
 
+        Date todayDate = new Date();
+        String currentDate = Event.DATE_FORMAT.format(todayDate);
+        System.out.println("DEBUG: Current Date is " + currentDate);
+        //TODO: Get selected date and time then format
+        //Date dueDate = new Date(calendarView.getDate());
+        //String selectedDate = Event.DATE_FORMAT.format(dueDate);
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1; //Starts from 0
+        int year = datePicker.getYear();
+        int hour = timePicker.getCurrentHour();
+        int minute = timePicker.getCurrentMinute();
+        System.out.println("DEBUG: MONTH IS   " + month);
 
-        // Current time
-        Date currentDate = new Date(); // currentDate
-
-        if(dueDate.before(currentDate)){
-            Toast.makeText(this, "Event is due in the past!", Toast.LENGTH_LONG).show();
-            System.out.println("Due date: " + dueDate.getTime() + " Current date: " + currentDate.getTime());
-            // (Maybe don't have to enforce this)
-            System.out.println("DEBUG: Selected date before current date...");
-            //clearance = false; // Letting it slide for now... Always seems to be before needs testing
-        }
+        String selectedDate = parseTime(day, month, year, hour, minute);
+        System.out.println("DEBUG: Selected Date is " + selectedDate);
 
         //If nothing went wrong save to database
         if(clearance){
@@ -94,6 +99,28 @@ public class AddEventActivity extends AppCompatActivity {
             //e.saveEvent(e, this);
         }
 
+    }
+
+    // Returns correctly formatted date/time string (hour and minute input in 24 hour format)
+    private String parseTime(int day, int month, int year, int hour, int minute){
+        // Convert 24 hour time to 12 hour with am/pm
+        String twentyFourHourTime = hour + ":" + minute;
+        //String twelveHourTime;
+        SimpleDateFormat twentyfourHour = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat twelveHour = new SimpleDateFormat("hh:mm a");
+        try {
+            Date d24 = twentyfourHour.parse(twentyFourHourTime);
+            String twelveHourTime = twelveHour.format(d24);
+            //System.out.println("DEBUG: Twelve hour format : " + twelveHourTime);
+            String sMonth = String.format("%02d",month);
+            String selectedDate = year + "-" + sMonth + "-" + day
+                    + " " + twelveHourTime;
+            return selectedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            System.out.println("DEBUG: Date parse error.");
+        }
+        return "";
     }
 
     public void setDate(View view){

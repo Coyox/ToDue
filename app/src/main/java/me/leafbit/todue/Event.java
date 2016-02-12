@@ -14,12 +14,13 @@ import java.util.Date;
  */
 public class Event {
 
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
 
     String name;
     String dueDate; // When the event is due. Includes YEAR, MONTH, DAY_OF_MONTH, AM_PM, HOUR
     String createdDate; // When the event was created. Same fields as above
     String category;
+    String hexColor;
 
     public Event(String name, String dueDate, String createdDate, String category){
         this.name = name;

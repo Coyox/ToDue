@@ -96,13 +96,21 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <CalendarView
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePicker"
+        android:layout_below="@+id/addEventDateDesc"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"/>
+
+<!--    <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/calendarView"
         android:layout_below="@+id/addEventDateDesc"
         android:layout_alignParentBottom="false"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" />-->
 
     <TextView
         android:layout_width="wrap_content"
@@ -110,7 +118,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Set Time"
         android:id="@+id/addEventTimeDesc"
-        android:layout_below="@+id/calendarView"
+        android:layout_below="@+id/datePicker"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
