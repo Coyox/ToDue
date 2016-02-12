@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 
 import java.util.Calendar;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Created by Adam on 2016-02-06.
@@ -20,8 +20,8 @@ public class Event {
     String category;
 
     // alternate types for dates
-    Date dateDue;
-    Date dateCreated;
+    //Date dateDue;
+    //Date dateCreated;
 
 
 
@@ -32,12 +32,12 @@ public class Event {
         this.category = category;
     }
 
-    public Event(String name, Date dateDue, Date dateCreated, String category){
+/*    public Event(String name, Date dateDue, Date dateCreated, String category){
         this.name = name;
         this.dateDue = dateDue;
         this.dateCreated = dateCreated;
         this.category = category;
-    }
+    }*/
 
 
 
@@ -55,8 +55,8 @@ public class Event {
         // Select columns for value insertion
         ContentValues values = new ContentValues();
         values.put(ToDueContract.EventEntry.COLUMN_NAME_EVENT_NAME, e.name); //name
-        values.put(ToDueContract.EventEntry.COLUMN_NAME_DUE, e.dateCreated.getTime()); //duedate
-        values.put(ToDueContract.EventEntry.COLUMN_NAME_START, e.dateCreated.getTime()); //createddate
+        //values.put(ToDueContract.EventEntry.COLUMN_NAME_DUE, e.dateCreated.getTime()); //duedate
+        //values.put(ToDueContract.EventEntry.COLUMN_NAME_START, e.dateCreated.getTime()); //createddate
         values.put(ToDueContract.CategoryEntry.COLUMN_NAME_NAME, e.category); // category name
 
         long newRowId;

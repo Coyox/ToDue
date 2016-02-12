@@ -12,7 +12,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class AddEventActivity extends AppCompatActivity {
@@ -73,21 +74,24 @@ public class AddEventActivity extends AppCompatActivity {
         }
 
         // Not sure if this works; needs testing and type research
-        Date dueDate = new Date(calendarView.getDate()); // dueDate
+        Date dueDate = new Date(calendarView.getDate());
+
+
         // Current time
-        java.util.Date cur = new java.util.Date();
-        Date currentDate = new Date(cur.getTime()); // currentDate
+        Date currentDate = new Date(); // currentDate
+
         if(dueDate.before(currentDate)){
             Toast.makeText(this, "Event is due in the past!", Toast.LENGTH_LONG).show();
+            System.out.println("Due date: " + dueDate.getTime() + " Current date: " + currentDate.getTime());
             // (Maybe don't have to enforce this)
             System.out.println("DEBUG: Selected date before current date...");
-            clearance = false;
+            //clearance = false; // Letting it slide for now... Always seems to be before needs testing
         }
 
         //If nothing went wrong save to database
         if(clearance){
-            Event e = new Event(name, dueDate, currentDate, selectedCategory);
-            e.saveEvent(e, this);
+            //Event e = new Event(name, dueDate, currentDate, selectedCategory);
+            //e.saveEvent(e, this);
         }
 
     }
