@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,31 +14,20 @@ import java.util.Date;
  */
 public class Event {
 
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm aa");
+
     String name;
-    Calendar dueDate; // When the event is due. Includes YEAR, MONTH, DAY_OF_MONTH, AM_PM, HOUR
-    Calendar createdDate; // When the event was created. Same fields as above
-    //Category category; // User defined category for this event
+    String dueDate; // When the event is due. Includes YEAR, MONTH, DAY_OF_MONTH, AM_PM, HOUR
+    String createdDate; // When the event was created. Same fields as above
     String category;
 
-    // alternate types for dates
-    //Date dateDue;
-    //Date dateCreated;
-
-
-
-    public Event(String name, Calendar dueDate, Calendar createdDate, String category){
+    public Event(String name, String dueDate, String createdDate, String category){
         this.name = name;
         this.dueDate = dueDate;
         this.createdDate = createdDate;
         this.category = category;
     }
 
-/*    public Event(String name, Date dateDue, Date dateCreated, String category){
-        this.name = name;
-        this.dateDue = dateDue;
-        this.dateCreated = dateCreated;
-        this.category = category;
-    }*/
 
 
 
@@ -55,8 +45,8 @@ public class Event {
         // Select columns for value insertion
         ContentValues values = new ContentValues();
         values.put(ToDueContract.EventEntry.COLUMN_NAME_EVENT_NAME, e.name); //name
-        //values.put(ToDueContract.EventEntry.COLUMN_NAME_DUE, e.dateCreated.getTime()); //duedate
-        //values.put(ToDueContract.EventEntry.COLUMN_NAME_START, e.dateCreated.getTime()); //createddate
+        values.put(ToDueContract.EventEntry.COLUMN_NAME_DUE, e.dueDate); //duedate
+        values.put(ToDueContract.EventEntry.COLUMN_NAME_START, e.createdDate); //createddate
         values.put(ToDueContract.CategoryEntry.COLUMN_NAME_NAME, e.category); // category name
 
         long newRowId;

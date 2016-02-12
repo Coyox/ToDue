@@ -23,7 +23,7 @@ public final class ToDueContract {
     private static final String TEXT_TYPE = " varchar(120)";
     private static final String NAME_TYPE = " varchar(60)";
     private static final String COLOR_TYPE = " char(7)";
-    private static final String DATE_TYPE = " date";
+    private static final String DATE_TYPE = " char(19)"; // "yyyy-MM-dd hh:mm aa"
     private static final String COMMA = ",";
     public static final String SQL_CREATE_CAT_TABLE =
             "CREATE TABLE IF NOT EXISTS " + CategoryEntry.TABLE_NAME + " ("
