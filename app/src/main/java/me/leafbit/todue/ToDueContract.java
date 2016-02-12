@@ -42,5 +42,5 @@ public final class ToDueContract {
     public static final String SQL_DELETE_ALL_CATEGORY =
             "DROP TABLE IF EXISTS " + CategoryEntry.TABLE_NAME;
     public static final String SQL_DELETE_ALL_EVENT =
-            "DROP TABLE IF EXISTS " + CategoryEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + EventEntry.TABLE_NAME;
 }

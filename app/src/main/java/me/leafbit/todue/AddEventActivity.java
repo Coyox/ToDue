@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -76,33 +74,29 @@ public class AddEventActivity extends AppCompatActivity {
         }
 
         // Get current date and time then format
-
         Date todayDate = new Date();
         String currentDate = Event.DATE_FORMAT.format(todayDate);
         System.out.println("DEBUG: Current Date is " + currentDate);
-        //TODO: Get selected date and time then format
-        //Date dueDate = new Date(calendarView.getDate());
-        //String selectedDate = Event.DATE_FORMAT.format(dueDate);
+        //Get selected date and time then format
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth() + 1; //Starts from 0
         int year = datePicker.getYear();
         int hour = timePicker.getCurrentHour();
         int minute = timePicker.getCurrentMinute();
-        System.out.println("DEBUG: MONTH IS   " + month);
-
-        String selectedDate = parseTime(day, month, year, hour, minute);
-        System.out.println("DEBUG: Selected Date is " + selectedDate);
+        String dueDate = formatTime(day, month, year, hour, minute);
+        System.out.println("DEBUG: Selected Date is " + dueDate);
 
         //If nothing went wrong save to database
         if(clearance){
-            //Event e = new Event(name, dueDate, currentDate, selectedCategory);
-            //e.saveEvent(e, this);
+            Event e = new Event(name, dueDate, currentDate, selectedCategory);
+            e.saveEvent(e, this);
+            finish();
         }
 
     }
 
     // Returns correctly formatted date/time string (hour and minute input in 24 hour format)
-    private String parseTime(int day, int month, int year, int hour, int minute){
+    private String formatTime(int day, int month, int year, int hour, int minute){
         // Convert 24 hour time to 12 hour with am/pm
         String twentyFourHourTime = hour + ":" + minute;
         //String twelveHourTime;

@@ -24,18 +24,21 @@ import java.util.ArrayList;
  */
 public class Category {
 
-    String id;            // Name of category
+    String id;              // Name of category
     String hexColor;        // #RRGGBB color code;
-
-    public static int DEFAULT_COLOR_R = 10;
-    public static int DEFAULT_COLOR_G = 100;
-    public static int DEFAULT_COLOR_B = 50;
 
     public Category(String id, String hexColor){
         this.id = id;
         this.hexColor = hexColor;
     }
 
+    public String getName(){
+        return this.id;
+    }
+
+    public String getHexColor(){
+        return this.hexColor;
+    }
 
     public static Cursor loadAllCategoriesAsCursor(Context ctx){
         // Instantiate Database
@@ -59,6 +62,34 @@ public class Category {
                 sortOrder);
 
         return c;
+    }
+
+    public static Category loadCategoryByName(String name, Context ctx) throws Exception {
+        ToDueDbHelper dbHelper = new ToDueDbHelper(ctx);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String[] projection = {
+                ToDueContract.CategoryEntry.COLUMN_NAME_NAME,
+                ToDueContract.CategoryEntry.COLUMN_NAME_COLOR
+        };
+
+        String sortOrder = ToDueContract.CategoryEntry.COLUMN_NAME_NAME;
+        String[] selectionArgs = new String[]{name};
+        Cursor c = db.query(ToDueContract.CategoryEntry.TABLE_NAME,
+                projection,
+                ToDueContract.CategoryEntry.COLUMN_NAME_NAME,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+                );
+        if(c != null){
+            c.moveToFirst();
+            String cName = c.getString(c.getColumnIndex(ToDueContract.CategoryEntry.COLUMN_NAME_NAME));
+            String color = c.getString(c.getColumnIndex(ToDueContract.CategoryEntry.COLUMN_NAME_COLOR));
+            Category category = new Category(cName, color);
+            return category;
+        } else throw new Exception("No record found");
     }
 
     // Reads saved categories from database and returns all
