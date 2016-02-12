@@ -21,9 +21,12 @@ public class EditCategoryActivity extends AppCompatActivity {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.execSQL(ToDueContract.SQL_DELETE_ALL_CATEGORY);
         System.out.println("DEBUG: Dropped category table.");
+        db.execSQL(ToDueContract.SQL_DELETE_ALL_EVENT); //TODO: TEMPORARY
+        System.out.println("DEBUG: Dropped event table.");
 
-        //Rebuild table
+        //Rebuild tables
         db.execSQL(ToDueContract.SQL_CREATE_CAT_TABLE);
+        db.execSQL(ToDueContract.SQL_CREATE_EVENT_TABLE); // TEMPORARY
 
         finish();
     }

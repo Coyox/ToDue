@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -31,7 +30,7 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
         if (v == null){
             LayoutInflater vi;
             vi = LayoutInflater.from(getContext());
-            v = vi.inflate(R.layout.activity_listview, null);
+            v = vi.inflate(R.layout.activity_category_listview, null);
         }
 
         Category c = getItem(position);

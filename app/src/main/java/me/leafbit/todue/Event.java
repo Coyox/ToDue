@@ -16,7 +16,8 @@ public class Event {
     String name;
     Calendar dueDate; // When the event is due. Includes YEAR, MONTH, DAY_OF_MONTH, AM_PM, HOUR
     Calendar createdDate; // When the event was created. Same fields as above
-    Category category; // User defined category for this event
+    //Category category; // User defined category for this event
+    String category;
 
     // alternate types for dates
     Date dateDue;
@@ -24,14 +25,14 @@ public class Event {
 
 
 
-    public Event(String name, Calendar dueDate, Calendar createdDate, Category category){
+    public Event(String name, Calendar dueDate, Calendar createdDate, String category){
         this.name = name;
         this.dueDate = dueDate;
         this.createdDate = createdDate;
         this.category = category;
     }
 
-    public Event(String name, Date dateDue, Date dateCreated, Category category){
+    public Event(String name, Date dateDue, Date dateCreated, String category){
         this.name = name;
         this.dateDue = dateDue;
         this.dateCreated = dateCreated;
@@ -56,7 +57,7 @@ public class Event {
         values.put(ToDueContract.EventEntry.COLUMN_NAME_EVENT_NAME, e.name); //name
         values.put(ToDueContract.EventEntry.COLUMN_NAME_DUE, e.dateCreated.getTime()); //duedate
         values.put(ToDueContract.EventEntry.COLUMN_NAME_START, e.dateCreated.getTime()); //createddate
-        values.put(ToDueContract.CategoryEntry.COLUMN_NAME_NAME, e.category.id); // category name
+        values.put(ToDueContract.CategoryEntry.COLUMN_NAME_NAME, e.category); // category name
 
         long newRowId;
         newRowId = db.insert(
