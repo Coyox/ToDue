@@ -13,14 +13,14 @@ import java.util.List;
 /**
  * Created by Adam on 2016-02-11.
  */
-public class ListAdapter extends ArrayAdapter<Category> {
+public class CategoryListAdapter extends ArrayAdapter<Category> {
     // Source: http://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
 
-    public ListAdapter(Context context, int resource) {
+    public CategoryListAdapter(Context context, int resource) {
         super(context, resource);
     }
 
-    public ListAdapter(Context context, int resource, List<Category> categories){
+    public CategoryListAdapter(Context context, int resource, List<Category> categories){
         super(context, resource, categories);
     }
 

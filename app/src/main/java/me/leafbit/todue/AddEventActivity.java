@@ -1,12 +1,8 @@
 package me.leafbit.todue;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -14,7 +10,6 @@ import android.widget.TimePicker;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class AddEventActivity extends AppCompatActivity {
 
@@ -33,8 +28,11 @@ public class AddEventActivity extends AppCompatActivity {
         //ArrayAdapter<Category> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, categories);
         ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
         //categoryView.setAdapter(arrayAdapter);
-        ListAdapter customAdapter = new ListAdapter(this, R.layout.activity_listview, categories);
+        CategoryListAdapter customAdapter = new CategoryListAdapter(this, R.layout.activity_listview, categories);
+        categoryView.setEnabled(true);
         categoryView.setAdapter(customAdapter);
+
+        //TODO: Set click listener for selecting a category
 
     }
 
