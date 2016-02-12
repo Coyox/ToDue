@@ -1,17 +1,26 @@
 package me.leafbit.todue;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.TwoStatePreference;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.sql.Date;
 import java.util.ArrayList;
 
 public class AddEventActivity extends AppCompatActivity {
+    String selectedCategory;
+    int selectedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,19 +29,30 @@ public class AddEventActivity extends AppCompatActivity {
 
         //load all categories and display them in the list
         ArrayList<Category> categories = Category.loadAllCategories(this);
-        System.out.println("LOADED: " + categories.size() + " categories from database");
-        for(Category c : categories){
-            System.out.println("CATEGORY NAME: " + c.id);
-        }
         //TODO: Populate list with available categories
         //ArrayAdapter<Category> arrayAdapter = new ArrayAdapter<>(this, R.layout.activity_listview, categories);
-        ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
+        final ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
         //categoryView.setAdapter(arrayAdapter);
         CategoryListAdapter customAdapter = new CategoryListAdapter(this, R.layout.activity_listview, categories);
-        categoryView.setEnabled(true);
+        //categoryView.setEnabled(true);
         categoryView.setAdapter(customAdapter);
 
-        //TODO: Set click listener for selecting a category
+
+        categoryView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Category category = (Category) categoryView.getItemAtPosition(position);
+                selectedCategory = category.id;
+                System.out.println("DEBUG: Selected the " + selectedCategory + " category");
+
+                // Make selected item text white
+                TextView tv = (TextView) view.findViewById(R.id.label);
+                tv.setTextColor(Color.WHITE);
+                categoryView.setSelection(position);
+                selectedPosition = position;
+            }
+        });
+
 
     }
 
@@ -42,12 +62,12 @@ public class AddEventActivity extends AppCompatActivity {
         EditText nameText = (EditText) findViewById(R.id.addEventNameText);
         CalendarView calendarView = (CalendarView) findViewById(R.id.calendarView);
         TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
-        ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
+        //ListView categoryView = (ListView) findViewById(R.id.addEventCatList);
 
         // Build event object
         String name = nameText.getText().toString(); // name
         if(name.isEmpty()){
-            //TODO: Alert user that the event must be named
+            Toast.makeText(this, "Please name the event", Toast.LENGTH_SHORT);
             System.out.println("DEBUG: Event left unnamed");
             finish(); // Temporary debugging
         }
@@ -57,7 +77,7 @@ public class AddEventActivity extends AppCompatActivity {
         java.util.Date cur = new java.util.Date();
         Date currentDate = new Date(cur.getTime()); // currentDate
         if(dueDate.before(currentDate)){
-            //TODO: Alert user that the event must be in the future
+            Toast.makeText(this, "Event is due in the past!", Toast.LENGTH_LONG);
             // (Maybe don't have to enforce this)
             System.out.println("DEBUG: Selected date before current date...");
             finish();

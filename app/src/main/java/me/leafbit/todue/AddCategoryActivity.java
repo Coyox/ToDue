@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
@@ -38,6 +39,13 @@ public class AddCategoryActivity extends AppCompatActivity {
         EditText nameText = (EditText) findViewById(R.id.addCategoryName);
         EditText hexText = (EditText) findViewById(R.id.addCatHexColor);
         hexColor = hexText.getText().toString();
+        if(nameText.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please name the category", Toast.LENGTH_SHORT);
+            finish();
+        }
+        if(hexText.getText().toString().isEmpty()){
+            Toast.makeText(this, "Please select a color", Toast.LENGTH_SHORT);
+        }
 
         Category c = new Category(nameText.getText().toString(), hexColor);
         Context ctx = getApplicationContext();

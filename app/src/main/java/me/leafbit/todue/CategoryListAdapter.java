@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -44,5 +45,6 @@ public class CategoryListAdapter extends ArrayAdapter<Category> {
         }
         return v;
     }
+
 
 }
