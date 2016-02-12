@@ -22,7 +22,6 @@ public class Event {
     String dueDate; // When the event is due. Includes YEAR, MONTH, DAY_OF_MONTH, AM_PM, HOUR
     String createdDate; // When the event was created. Same fields as above
     String category;
-    String hexColor;
 
     public Event(String name, String dueDate, String createdDate, String category){
         this.name = name;
@@ -35,7 +34,7 @@ public class Event {
 
 
     // Read the saved event data from storage and return all
-    public ArrayList<Event> loadAllEvents(Context ctx){
+    public static ArrayList<Event> loadAllEvents(Context ctx){
         //TODO:
         ArrayList<Event> events = new ArrayList<Event>();
         ToDueDbHelper dbHelper = new ToDueDbHelper(ctx);
@@ -50,7 +49,7 @@ public class Event {
         };
 
         String sortOrder = ToDueContract.EventEntry.COLUMN_NAME_DUE; //TODO: Determine proper sort
-        Cursor c = db.query(ToDueContract.CategoryEntry.TABLE_NAME,
+        Cursor c = db.query(ToDueContract.EventEntry.TABLE_NAME,
                 projection,
                 null,
                 null,

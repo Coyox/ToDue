@@ -77,7 +77,7 @@ public class Category {
         String[] selectionArgs = new String[]{name};
         Cursor c = db.query(ToDueContract.CategoryEntry.TABLE_NAME,
                 projection,
-                ToDueContract.CategoryEntry.COLUMN_NAME_NAME,
+                ToDueContract.CategoryEntry.COLUMN_NAME_NAME + "=?",
                 selectionArgs,
                 null,
                 null,
@@ -125,6 +125,7 @@ public class Category {
                 } while (c.moveToNext());
             }
         }
+        c.close();
 
         return categories;
     }
@@ -140,8 +141,7 @@ public class Category {
         values.put(ToDueContract.CategoryEntry.COLUMN_NAME_COLOR, c.hexColor);
 
         // Insert values and get back the id of the new row
-        long newRowId;
-        newRowId = db.insert(
+        long newRowId = db.insert(
                 ToDueContract.CategoryEntry.TABLE_NAME,
                 "null",
                 values);

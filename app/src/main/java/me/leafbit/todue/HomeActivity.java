@@ -16,8 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +33,10 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         final Context context = this;
 
+        //load all events and display them in the list
+
+        drawEventList(context);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             //TODO: Handle FAB click
@@ -39,6 +46,7 @@ public class HomeActivity extends AppCompatActivity
                 Intent addEventIntent;
                 addEventIntent = new Intent(context, AddEventActivity.class);
                 startActivity(addEventIntent);
+
             }
         });
 
@@ -50,6 +58,19 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void drawEventList(Context ctx ){
+        ArrayList<Event> events = Event.loadAllEvents(this);
+        ListView eventView = (ListView) findViewById(R.id.eventListView);
+        EventListAdapter customAdapter = new EventListAdapter(this, R.layout.activity_event_listview, events);
+        eventView.setAdapter(customAdapter);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        drawEventList(this);
+
     }
 
     @Override
